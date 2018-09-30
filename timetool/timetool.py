@@ -8,7 +8,7 @@
 import os,sys
 import time
 
-voicefiles = {'am':'AM1.wav','pm':'PM','lc':'AM0','ws':'EM','point':'POINT','0':'T00','1':'T01',
+voicefiles = {'am':'AM1','pm':'PM','lc':'AM0','ws':'EM','point':'POINT','0':'T00','1':'T01',
             '2':'T02',
             '3':'T03',
             '4':'T04',
@@ -228,25 +228,38 @@ def playWavFile(pth):
     os.system(cmd)
 
 def playNowTime(speakerFnames):
-
-    for fpth in speakerFnames:
-        playWavFile(fpth)
+    if speakerFnames and speakerFnames != '':
+        if speakerFnames == str:
+            playWavFile(speakerFnames)
+        else:
+            for fpth in speakerFnames:
+                playWavFile(fpth)
 
 def getFileName(pth):
     pth1,_ = os.path.splitext(pth)
     fpth,fname = os.path.split(pth1)
     return fpth,fname
 
+isSoundType1 = False
 
+def getTimePths(hour):
+    outs = []
+    if hour < 12 and hour > 7:
+        outs.append()
 
 def playtime(hour,pmin = 0):
-    if pmin == 0:
-        fpth = ''
-        if hour < 10:
-            fpth = 'wav/0%d.wav'%(hour)
-        else:
-            fpth = 'wav/%d.wav'%(hour)
-        playWavFile(fpth)
+    fpth = ''
+
+    if isSoundType1:
+        pass
+
+    else:
+        if pmin == 0:
+            if hour < 10:
+                fpth = 'wav/0%d.wav'%(hour)
+            else:
+                fpth = 'wav/%d.wav'%(hour)
+    playNowTime(fpth)
 
 
 speaktimes = [8,10,12,14,16,18,20]
