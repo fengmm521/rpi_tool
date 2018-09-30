@@ -202,6 +202,10 @@ def upmp3ToRout(mp3pth,fname):
     f.write(fname + '\n')
     f.close()
 
+def upMusicListNamesToRout():
+    cmd = '/usr/bin/scp routmusic.txt admin@192.168.123.1:/media/other/music/'
+    os.system(cmd)
+
 def conventMp3WithMp4(inpth,outpth):
     # /usr/local/bin/ffmpeg -i apple.mp4 -f mp3 -vn apple.mp3
     cmd = '/usr/local/bin/ffmpeg -i %s -f mp3 -vn %s'%(inpth,outpth)
@@ -238,6 +242,7 @@ def getAllmp3():
         outpth = '"out/' + fname + '.mp3"'
         conventMp3WithMp4(inpth, outpth)
         upmp3ToRout(outpth, fname)
+    upMusicListNamesToRout()
 
 def main():
     getAllmp3()
