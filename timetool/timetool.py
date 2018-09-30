@@ -229,7 +229,7 @@ def playWavFile(pth):
 
 def playNowTime(speakerFnames):
     if speakerFnames and speakerFnames != '':
-        if speakerFnames == str:
+        if type(speakerFnames) == str:
             playWavFile(speakerFnames)
         else:
             for fpth in speakerFnames:
@@ -256,9 +256,9 @@ def playtime(hour,pmin = 0):
     else:
         if pmin == 0:
             if hour < 10:
-                fpth = 'wav/0%d.wav'%(hour)
+                fpth = 'mp3/0%ddefault.mp3'%(hour)
             else:
-                fpth = 'wav/%d.wav'%(hour)
+                fpth = 'mp3/%ddefault.mp3'%(hour)
     playNowTime(fpth)
 
 
